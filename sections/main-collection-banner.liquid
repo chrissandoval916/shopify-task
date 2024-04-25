@@ -2,14 +2,68 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #collectionBanner {
+    position: relative;
+  }
+
+  #collectionBanner .loading-overlay {
+    position: absolute;
+    z-index: 1;
+    width: 1.8rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    #collectionBanner .loading-overlay {
+      top: 0;
+      right: 0;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    #collectionBanner .loading-overlay {
+      left: 0;
+    }
+  }
+
+  #collectionBanner .loading-overlay {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    padding: 0 1.5rem;
+    opacity: 0.7;
+  }
+
+  @media screen and (min-width: 750px) {
+    #collectionBanner .loading-overlay {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+
+  #collectionBanner.loading .loading-overlay {
+    display: block;
+  }
+
+  #collectionBanner.loading .collection-hero__text-wrapper {
+    filter: blur(5px);
+  }
+
   @media screen and (max-width: 749px) {
     .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+      padding-bottom: calc({{settings.media_shadow_vertical_offset | at_least: 0}}px + 2rem);
     }
   }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+<div
+  class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient"
+  id="collectionBanner"
+  data-id="{{ section.id }}"
+>
+  <div class="loading-overlay gradient"></div>
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">

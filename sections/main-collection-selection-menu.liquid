@@ -1,0 +1,88 @@
+{{ 'collection-selection-menu.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'collection-selection-menu.js' | asset_url }}" defer="defer"></script>
+
+{% assign show_collection_selection_menu = false %}
+{% for block in section.blocks %}
+  {% if block.type == 'collection' and block.settings.collection != blank %}
+    {% assign show_collection_selection_menu = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if show_collection_selection_menu %}
+  <collection-selection-menu class="color-{{ section.settings.color_scheme }}">
+    <div
+      class="collection-selection-menu"
+      id="CollectionCategoryMenu"
+    >
+      <div class="menu-container">
+        <div class="mobile-menu-toggle">
+          <a href="#"> Choose Category </a>
+          <span class="underline"></span>
+        </div>
+        <ul>
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'collection' %}
+                {% if block.settings.collection != blank %}
+                  <li
+                    class="link {% if request.path == block.settings.collection.url %}active{% endif %}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {% if block.settings.link_title_alternative != empty %}
+                      {{ block.settings.link_title_alternative | link_to: block.settings.collection.url }}
+                    {% else %}
+                      {{ block.settings.collection.title | link_to: block.settings.collection.url }}
+                    {% endif %}
+                    <span class="underline"></span>
+                  </li>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </collection-selection-menu>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Collection Selection Menu",
+  "limit": 1,
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Alternative Menu Title",
+          "info": "If the following value is set, then it will be used instead of the collection's title"
+        },
+        {
+          "type": "text",
+          "id": "link_title_alternative",
+          "label": "Alternative Menu Title"
+        },
+        {
+          "type": "header",
+          "content": "Choose a Collection",
+          "info": "Choose the collection this menu link will show"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Collection Selection Menu"
+    }
+  ]
+}
+{% endschema %}

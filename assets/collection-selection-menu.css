@@ -1,0 +1,120 @@
+.collection-selection-menu {
+    margin-top: 15px;
+}
+
+.collection-selection-menu .menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collection-selection-menu ul {
+    display: inline-flex;
+    flex-direction: row;
+    background: white;
+    box-shadow: none;
+    border-top: 1px solid #C7C8C9;
+    border-left: 1px solid #C7C8C9;
+    border-right: 1px solid #C7C8C9;
+    margin-block: unset;
+    margin-inline: unset;
+    padding-inline: unset;
+}
+
+.collection-selection-menu ul .link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.collection-selection-menu ul .link a {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center; 
+    padding: 0 25px;
+    text-decoration: none;
+    color: #C7C8C9;
+}
+
+.collection-selection-menu ul .link.active a, .collection-selection-menu ul .link:hover a {
+    color: #01488D;
+}
+
+.collection-selection-menu ul .link .underline {
+    display: block;
+    margin-top: 10px;
+    padding: 0 10px 10px;
+    border-top: 1px solid #C7C8C9;
+    border-bottom: 1px solid #C7C8C9;
+}
+
+.collection-selection-menu ul .link.active .underline, .collection-selection-menu ul .link:hover .underline {
+    padding-bottom: 6px;
+    border-top: 5px solid #01488D;
+}
+
+/*Mobile dropdown CSS*/
+
+.collection-selection-menu ul.mobile-show {
+    display: inline-flex;
+}
+
+.collection-selection-menu .mobile-menu-toggle {
+    display: none;
+    width: 80%;
+    height: 60px;
+    border: 1px solid #C7C8C9;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.collection-selection-menu .mobile-menu-toggle a {
+    text-decoration: none;
+    color: #C7C8C9;
+    padding: 0 25px;
+}
+
+.collection-selection-menu .mobile-menu-toggle.active a, .collection-selection-menu .mobile-menu-toggle:hover a {
+    color: #01488D;
+}
+
+.collection-selection-menu .mobile-menu-toggle .underline {
+    display: block;
+    margin-top: 10px;
+    padding: 0 10px 10px;
+    border-top: 1px solid #C7C8C9;
+}
+
+.collection-selection-menu .mobile-menu-toggle.active .underline, .collection-selection-menu .mobile-menu-toggle:hover .underline {
+    padding-bottom: 6px;
+    border-top: 5px solid #01488D;
+}
+
+/*Mobile dropdown CSS Toggle overrides*/
+
+@media (max-width: 990px) {
+    .collection-selection-menu {
+        position: relative;
+        height: 60px;
+        z-index: 2;
+    }
+
+    .collection-selection-menu .menu-container {
+        flex-direction: column;
+    }
+
+    .collection-selection-menu .mobile-menu-toggle {
+        display: block;
+        text-align: center; 
+    }
+
+    .collection-selection-menu ul {
+        display: none;
+        flex-direction: column;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
+}

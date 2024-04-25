@@ -1,5 +1,8 @@
 {
   "sections": {
+    "collection-selection-menu": {
+      "type": "main-collection-selection-menu"
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
@@ -26,6 +29,7 @@
     }
   },
   "order": [
+    "collection-selection-menu",
     "banner",
     "product-grid"
   ]
